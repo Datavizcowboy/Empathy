@@ -22,7 +22,7 @@ var list_scenarios = ["5 queries", "5 clicks"]
 var legend_size = 10
 var legend_pitch = 700
 var legend_radius = 3
-var label_size = 10
+var label_size = 11
 
 //--------------------------- Legend with the circle elements
 
@@ -76,7 +76,8 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                 .attr("cy", function (d) { return 320 + radius * Math.sin(2 * Math.PI * dd / items) + 0 + minithey; })
                 .attr("r", function (d) { return 1; })
                 .attr("opacity", 1)
-                .attr("fill", function (d) { return "#333"; })
+                .attr("fill", function (d, i) { return d3.rgb(0 - cc * 6, 150 - cc * 2, 150 + cc * 2); })
+
                 .attr("stroke", function (d) { return "none"; })
 
             //--------------------------- Radial lines from the center to the clicks
@@ -109,7 +110,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         .attr("cy", function (d, i) { return 320 + radius * Math.sin(2 * Math.PI * i / items); })
         .attr("r", function (d, i) { return d.query_count * .01; })
         .attr("opacity", 1)
-        .attr("fill", function (d) { return "#999"; })
+        .attr("fill", function (d, i) { return d3.rgb(0 - i * 6, 100 - i * 2, 150 - i * 20); })
         .attr("stroke", function (d) { return "none"; })
 
     dots.selectAll("text").data(data.data).enter()
@@ -117,10 +118,10 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         .attr("x", function (d, i) { return 320 + radius * Math.cos(2 * Math.PI * i / items); })
         .attr("y", function (d, i) { return 55 + 320 + radius * Math.sin(2 * Math.PI * i / items); })
         .text(function (d) { return d.terms; })
-        .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
+        .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
         .attr("font-size", label_size)
         .attr("font-weight", "lighter")
         .attr("text-anchor", "middle")
         .attr("opacity", 1)
-        .style("fill", "#666")
+        .style("fill", "#333")
 })
