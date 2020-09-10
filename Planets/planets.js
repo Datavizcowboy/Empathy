@@ -10,35 +10,37 @@ var svgres = d3.select("div.leftpolyresources-div")
 
 //--------------------------- Groups definition
 
-fmapres = svgres.append("g")
-reslegend = svgres.append("g")
+legend = svgres.append("g")
 h = svgres.append("g")
 
 //--------------------------- Constant definition
 
-var list_scenarios = ["5 queries", "5 clicks"]
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
 var radius = 270
+var list_scenarios = ["5 queries", "5 clicks"]
+var legend_size = 10
+var legend_pitch = 700
+var legend_radius = 3
+var label_size = 10
 
 //--------------------------- Legend with the circle elements
 
 for (k = 0; k < list_scenarios.length; k++) {
 
-    reslegend.append("text")
-        .attr("x", function (d) { return 860; })
+    legend.append("text")
+        .attr("x", legend_pitch+10)
         .attr("y", 10 + k * 15)
         .text(function (d) { return list_scenarios[k]; })
-        .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
-        .attr("font-size", 10)
-        .attr("font-weight", "lighter")
+        .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+        .attr("font-size", legend_size)
         .attr("opacity", 1)
         .style("fill", "#666")
 
-    reslegend.append("circle")
-        .attr("cx", function (d) { return 850; })
+    legend.append("circle")
+        .attr("cx", legend_pitch)
         .attr("cy", 6 + k * 15)
-        .attr("r", 3)
+        .attr("r", legend_radius)
         .style("opacity", .8)
         .attr("fill", function (d) {
             if (k == 0) return "#bbb";
@@ -79,7 +81,6 @@ d3.json("../DATA/opportunities.json", function (error, data) {
 
             //--------------------------- Radial lines from the center to the clicks
 
-
             dotsback
                 .append("line")
                 .attr("x1", 320 + radius * Math.cos(2 * Math.PI * dd / items))
@@ -117,7 +118,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         .attr("y", function (d, i) { return 55 + 320 + radius * Math.sin(2 * Math.PI * i / items); })
         .text(function (d) { return d.terms; })
         .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
-        .attr("font-size", 10)
+        .attr("font-size", label_size)
         .attr("font-weight", "lighter")
         .attr("text-anchor", "middle")
         .attr("opacity", 1)

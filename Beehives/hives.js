@@ -10,40 +10,36 @@ var svgres = d3.select("div.leftpolyresources-div")
 
 //--------------------------- Groups definition
 
-fmapres = svgres.append("g")
-reslegend = svgres.append("g")
-htext = svgres.append("g")
+legend = svgres.append("g")
 
 //--------------------------- Constants definition
 
 var lineGenerator = d3.line()
-
 var radius = 4.3
-var items = 20;
-var rows = 6
-var columns = 12
 var numpitch = 0
 var numspace = 200
 var list_scenarios = ["5 queries", "5 clicks"]
+var legend_size = 10
+var legend_radius = 3
+var hives_text_size = 12
 
 //--------------------------- Legend with the dots/hexagons
 
 for (k = 0; k < list_scenarios.length; k++) {
 
-    reslegend.append("text")
+    legend.append("text")
         .attr("x", 860)
         .attr("y", 130 + k * 15)
         .text(function (d) { return list_scenarios[k]; })
-        .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
-        .attr("font-size", 10)
-        .attr("font-weight", "lighter")
+        .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+        .attr("font-size", legend_size)
         .attr("opacity", 1)
         .style("fill", "#666")
 
-    reslegend.append("circle")
+    legend.append("circle")
         .attr("cx", 850)
         .attr("cy", 126 + k * 15)
-        .attr("r", 3)
+        .attr("r", legend_radius)
         .style("opacity", .8)
         .attr("fill", function (d) {
             if (k == 0) return "#bbb";
@@ -60,7 +56,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
 
         //--------------------------- Position of groups in a 4x4 matrix
 
-        var h = svgres.append("g")
+        var hives = svgres.append("g")
             .attr("transform", function (d) {
                 reverse = 1
                 if (ff < 4) { factor = 0; shift = 0; }
@@ -72,19 +68,18 @@ d3.json("../DATA/opportunities.json", function (error, data) {
 
         //--------------------------- Label each hive with the category name
 
-        h
+        hives
             .append("text")
             .attr("x", function (d, i) { return 30; })
             .attr("y", function (d) { return 170; })
             .text(function (d) { return (data.data[ff].terms); })
             .attr("font-family", "Gill Sans, sans-serif")
-            .attr("font-size", 12)
+            .attr("font-size", hives_text_size)
             .style("fill", "black");
 
 
         items = data.data[ff].query_count / 4;
         side = Math.sqrt(items)
-
         counter = 0
 
         //--------------------------- Polygon definition of individual hexagons
@@ -126,15 +121,13 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                 var thepoints = [verA, verB, verC, verD, verE, verF, verA];
                 var pathData = lineGenerator(thepoints);
 
-                h
+                hives
                     .append("path")
-                    //    .style("class", "pathline")
                     .attr('d', pathData)
                     .style("stroke-width", ".25px")
                     .attr("opacity", 1)
-                    .attr("id", "murky" + counter + "_" + ff)
+                    .attr("id", "thehive_" + counter + "_" + ff)
                     .style("fill", d3.rgb(255 - rand2 * 10, 255 - rand2 * 10, 255 - rand2 * 10).toString())
-                    // .style("fill", "none")
                     .style("stroke", "gray");
 
                 counter = counter + 1
@@ -142,14 +135,13 @@ d3.json("../DATA/opportunities.json", function (error, data) {
             }
         }
 
-         //----------- Highlight a number of cells in sync with the click count
+        //----------- Highlight a number of cells in sync with the click count
 
         high = data.data[ff].click_count / 4;
 
         for (let rr = 0; rr < high; rr++) {
-            frame =
-                pick = Math.floor(Math.random() * items) + 1
-            d3.select("#murky" + pick + "_" + ff).style("fill", "#666")
+            pick = Math.floor(Math.random() * items) + 1
+            d3.select("#thehive_" + pick + "_" + ff).style("fill", "#666")
         }
     }
 })

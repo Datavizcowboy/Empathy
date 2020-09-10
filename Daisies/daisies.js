@@ -10,8 +10,7 @@ var svgres = d3.select("div.leftpolyresources-div")
 
 //--------------------------- Groups definition
 
-fmapres = svgres.append("g")
-reslegend = svgres.append("g")
+legend = svgres.append("g")
 h = svgres.append("g")
     .attr("transform", function (d) {
         return "translate(" + (200) + "," + (200) + ")";
@@ -22,7 +21,7 @@ h = svgres.append("g")
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
 
-var radius = 220
+var outerRadius = 200;
 
 var thejson = "../DATA/opportunities.json"
 
@@ -33,17 +32,16 @@ field2 = [];
 //--------------- on the number of elements to distribute on the circle
 
 d3.json(thejson, function (json) {
-    console.log(json.data)
     dajson = json.data
     dajson.map(function (d) {
         field1.push(d.query_count / 40);
         field2.push(d.click_count / 40)
     })
 
-    items = field1[0]
+    itemsquery = field1[0]
     itemsclick = field2[0]
 
-    var data = d3.range(items).map(function (i) {
+    var data = d3.range(itemsquery).map(function (i) {
         return {
             'x': i,
             'y': i
@@ -54,30 +52,13 @@ d3.json(thejson, function (json) {
         .domain([0, data.length])
         .range([Math.PI * 0, Math.PI * 2]);
 
-    var xcos1 = d3.scaleLinear()
-        .domain([0, data.length])
-        .range([0, Math.PI]);
-
     var ysin = d3.scaleLinear()
         .domain([0, data.length])
         .range([Math.PI * 0, Math.PI * 2]);
 
-    var innerRadius = 100;
-    var outerRadius = 200;
-
     //--------------- Create the groups along the circle perimeter
 
-    for (var ii = 0; ii < items; ii++) {
-
-        var rand2 = Math.random()
-
-        var thex = radius * Math.cos(2 * Math.PI * ii / items);
-        var they = radius * Math.sin(2 * Math.PI * ii / items);
-
-        var dotsback = h.append("g")
-            .attr("transform", function (d) {
-                return "translate(" + (300 + thex) + "," + (250 + they) + ")rotate(45)";
-            })
+    for (var ii = 0; ii < itemsquery; ii++) {
 
         var dots = h
             .selectAll('g')
@@ -92,7 +73,6 @@ d3.json(thejson, function (json) {
 
         //--------------- Assign an interpolated polygon to each group
 
-        var maxnum = Math.ceil(Math.random() * 10)
         var mypoints = [[20, 10], [40, 60], [20, 80], [0, 60], [20, 10]];
         var pathData = lineGenerator(mypoints);
 

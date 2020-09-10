@@ -10,31 +10,20 @@ var svgres = d3.select("div.leftpolyresources-div")
 
 //--------------------------- Groups definition
 
-
-fmapres = svgres.append("g")
-reslegend = svgres.append("g")
-h = svgres.append("g")
-h2 = svgres.append("g")
+frame = svgres.append("g")
+frametext = svgres.append("g")
 
 //--------------------------- Constant definition
 
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
 
-var radius = 220
-var items = 16;
-var thepitch = 15
-var vpitch = 30
-var thelim = 29
-
 var thejson = "../DATA/opportunities.json"
 
 field1 = [];
 field2 = [];
 
-
 //--------------------------- Construction of the rectangles 
-
 
 d3.json(thejson, function (json) {
     dajson = json.data
@@ -47,11 +36,11 @@ d3.json(thejson, function (json) {
 
     const cumulativeSum = (sum => value => sum += value)(0);
 
-    newfield = field1.map(cumulativeSum)
+    queries = field1.map(cumulativeSum)
 
-    h.selectAll("rect").data(json.data).enter()
+    frame.selectAll("rect").data(json.data).enter()
         .append("rect")
-        .attr("x", function (d, i) { return newfield[i] - newfield[0]; })
+        .attr("x", function (d, i) { return queries[i] - queries[0]; })
         .attr("y", function (d) { return 30; })
         .attr("height", function (d) { return 300; })
         .attr("width", function (d, i) { return field1[i]; })
@@ -59,10 +48,10 @@ d3.json(thejson, function (json) {
         .attr("fill", function (d, i) { return d3.rgb(155 - i * 10, 155 - i * 10, 155 - i * 10); })
         .attr("stroke", "white");
 
-    h.selectAll("text").data(json.data).enter()
+    frame.selectAll("text").data(json.data).enter()
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", function (d, i) { return newfield[i] - newfield[0]; })
+        .attr("y", function (d, i) { return queries[i] - queries[0]; })
         .attr("x", 0 - (340))
         .attr("dy", "1em")
         .style("text-anchor", "end")
@@ -73,10 +62,10 @@ d3.json(thejson, function (json) {
         .attr("id", "theyaxis")
         .style("fill", "black");
 
-    h2.selectAll("text").data(json.data).enter()
+    frametext.selectAll("text").data(json.data).enter()
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", function (d, i) { return 13 + newfield[i] - newfield[0]; })
+        .attr("y", function (d, i) { return 13 + queries[i] - queries[0]; })
         .attr("x", 0 - (340))
         .attr("dy", "1em")
         .style("text-anchor", "end")
@@ -89,24 +78,23 @@ d3.json(thejson, function (json) {
 
     //--------------------------- Add a number of circles equal to the click count
 
-    for (o = 0; o < newfield.length; o++) {
+    for (o = 0; o < queries.length; o++) {
 
-        thenum = field2[o]
+        clicks = field2[o]
 
-        for (k = 0; k < thenum; k++) {
+        for (k = 0; k < clicks; k++) {
 
             //--------------------------- Distribute the circles randomly within the rectangle
 
             randy = Math.random()
             randx = Math.random()
 
-            h
+            frame
                 .append("circle")
-                .attr("cx", function (d, i) { return newfield[o] - newfield[0] + randx * field1[o]; })
+                .attr("cx", function (d, i) { return queries[o] - queries[0] + randx * field1[o]; })
                 .attr("cy", 30 + randy * 300)
                 .attr("r", 1)
                 .style("opacity", 1)
-                .attr("id", function (d) { return "isl" })
                 .attr("fill", function (d) { return "white"; })
                 .attr("stroke", function (d) { return "none"; })
         }
