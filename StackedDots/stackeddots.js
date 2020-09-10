@@ -40,7 +40,7 @@ for (k = 0; k < list_scenarios.length; k++) {
         .style("opacity", .8)
         .attr("fill", function (d) {
             if (k == 0) return "#bbb";
-            return "#000";
+            return "red";
         })
         .attr("stroke", "none")
 }
@@ -83,7 +83,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                         .attr("cy", 300 - lev * 6)
                         .attr("r", 2)
                         .attr("opacity", 1)
-                        .attr("fill", "#bbb")
+                        .attr("fill", "#ccc")
                 }
             }
 
@@ -96,7 +96,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                     .attr("cy", 300 - (enteros) * 6)
                     .attr("r", 2)
                     .attr("opacity", 1)
-                    .attr("fill", "#bbb")
+                    .attr("fill", "#ccc")
             }
         }
 
@@ -107,8 +107,8 @@ d3.json("../DATA/opportunities.json", function (error, data) {
             .attr("x", 5)
             .attr("y", 340)
             .text(function (d) { return data.data[i].terms; })
-            .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
-            .attr("font-size", 10)
+            .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+            .attr("font-size", 12)
             .attr("opacity", 1)
             .style("fill", "black")
 
@@ -193,7 +193,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                         .attr("cx", k * 6)
                         .attr("cy", 300 - lev * 6)
                         .attr("r", 2)
-                        .attr("fill", "black")
+                        .attr("fill", "red")
                 }
             }
             for (r = 1; r <= resto; r++) {
@@ -202,7 +202,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                     .attr("cx", r * 6)
                     .attr("cy", 300 - (enteros) * 6)
                     .attr("r", 2)
-                    .attr("fill","black")
+                    .attr("fill","red")
             }
         }
     }
