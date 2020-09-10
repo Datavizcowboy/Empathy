@@ -45,7 +45,7 @@ d3.json(thejson, function (json) {
         .attr("height", function (d) { return 300; })
         .attr("width", function (d, i) { return field1[i]; })
         .style("opacity", function (d, i) { return 1; })
-        .attr("fill", function (d, i) { return d3.rgb(155 - i * 10, 155 - i * 10, 155 - i * 10); })
+        .attr("fill", function (d, i) { return d3.rgb(0 - i * 10, 205 - i * 10, 255 - i * 10); })
         .attr("stroke", "white");
 
     frame.selectAll("text").data(json.data).enter()
