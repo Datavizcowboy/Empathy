@@ -1,11 +1,5 @@
 # Opportunities
 
-<h1 align="center">
-	<br>
-	<img width="360" src="https://graphicprototype.net/MooveMeLogo.png">
-	<br>
-</h1>
-
 ## Contents
 
 - Introduction
@@ -23,4 +17,16 @@ Data Visualization
 ## Prototypes
 
 ### 01 Stacked Dots
+
+### 02 Sky
+
+### 03 Planets
+
+### 04 Mountain Ridge
+
+### 05 Beehives
+
+### 06 Waterfall
+
+### 07 Flowers
 
