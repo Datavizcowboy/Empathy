@@ -1,4 +1,4 @@
-# Empathy
+# Opportunities
 
 <h1 align="center">
 	<br>
@@ -6,19 +6,21 @@
 	<br>
 </h1>
 
-## CONTENTS
+## Contents
 
 - Introduction
 - Design Process
 - Prototypes
 
-## INTRODUCTION
+## Introduction
 
 Data Visualization
 
-## DESIGN PROCESS
+## Design Process
 
 [Figma Layout](https://www.figma.com/file/7M2e54IB8ZEo4mFqgUJdXz/Opportunities?node-id=0%3A1 "DESIGN PROCESS")
 
-## PROTOTYPES
+## Prototypes
+
+### 01 Stacked Dots
 
