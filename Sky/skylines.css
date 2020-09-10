@@ -7,7 +7,6 @@ line-height: 38px;
 position: absolute;
 font-weight: bold;
 color: black;
-/*    margin : 0;*/
 }
 
 p.author {
@@ -16,7 +15,6 @@ font-size: 10pt;
 line-height: 12pt;
 margin-top: 90px;
 margin-left: 0px;
-/*    top: 0px;*/
 color: #bbb;
 position: absolute;
 }
