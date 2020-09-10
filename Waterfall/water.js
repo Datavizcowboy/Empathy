@@ -41,7 +41,7 @@ for (k = 0; k < list_scenarios.length; k++) {
         .attr("r", 3)
         .style("opacity", .8)
         .attr("fill", function (d) {
-            if (k == 0) return "#333";
+            if (k == 0) return "white";
             return "#000";
         })
         .attr("stroke", "none")
@@ -52,7 +52,7 @@ for (k = 0; k < list_scenarios.length; k++) {
 legend.append("text")
     .attr("x", legend_pitch)
     .attr("y", 420)
-    .text("Query Counts")
+    .text("Query Count")
     .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
     .attr("font-size", 10)
     .attr("opacity", 1)
@@ -60,12 +60,12 @@ legend.append("text")
 
 legend.append("text")
     .attr("x", legend_pitch)
-    .attr("y", 800)
-    .text("Clicks Counts")
+    .attr("y", 795)
+    .text("Clicks Count")
     .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
     .attr("font-size", 10)
     .attr("opacity", 1)
-    .style("fill", "#333")
+    .style("fill", "white")
 
 //--------------------------- Construction of the paths
 
@@ -157,7 +157,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                 .attr("cy", 520 + 250 * rand3)
                 .attr("r", 2)
                 .attr("opacity", 1)
-                .attr("fill", "#333")
+                .attr("fill", "white")
                 .attr("stroke", "none")
         }
 
