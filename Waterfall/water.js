@@ -1,4 +1,6 @@
 
+//--------------------------- SVG definition
+
 var widthres = 980;
 var heightres = 1200;
 
@@ -7,10 +9,18 @@ var svgres = d3.select("div.leftpolyresources-div")
     .attr("width", widthres)
     .attr("height", heightres)
 
+//--------------------------- Groups definition
+
 fmapres = svgres.append("g")
 reslegend = svgres.append("g")
+h = svgres.append("g")
+
+//--------------------------- Constant definition
+
 
 var list_scenarios = ["5 queries", "5 clicks"]
+
+//--------------------------- Labels of query and click counts
 
 reslegend.append("text")
     .attr("x", function (d) { return 860; })
@@ -30,37 +40,6 @@ reslegend.append("text")
     .attr("opacity", 1)
     .style("fill", "#333")
 
-// for (k = 0; k < list_scenarios.length; k++) {
-
-//     reslegend.append("text")
-//         .attr("x", function (d) { return 900; })
-//         .attr("y", 310 + k * 15)
-//         .text(function (d) { return list_scenarios[k]; })
-//         .attr("font-family", "Gill Sans Light, Century Gothic, sans-serif")
-//         .attr("font-size", 10)
-//         .attr("opacity", 1)
-//         .style("fill", "#666")
-
-//     reslegend.append("circle")
-//         .attr("cx", function (d) { return 890; })
-//         .attr("cy", 306 + k * 15)
-//         .attr("r", 3)
-//         .style("opacity", .8)
-//         .attr("id", function (d) { return "isl" })
-//         .attr("fill", function (d) {
-//             if (k == 0) return "#bbb";
-//             return "#000";
-//         })
-//         .attr("stroke", function (d) { return "none"; })
-// }
-
-
-
-h = svgres.append("g")
-    .attr("transform", function (d) {
-        return "translate(" + (0) + "," + (0) + ")";
-    })
-
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
 
@@ -73,17 +52,18 @@ hpitch = 0
 
 list_cat = []
 
-//----------------------------- Explore the Data
+//--------------------------- Construction of the paths
 
 d3.json("../DATA/opportunities.json", function (error, data) {
-
-
 
     var items = data.data.length;
 
     for (var j = 0; j < items; j++) {
 
         randcat = Math.random()
+
+        //--------------------------- Labels for each one of the terms
+
 
         h
             .append("text")
@@ -135,6 +115,10 @@ d3.json("../DATA/opportunities.json", function (error, data) {
             })
             .duration(8000);
 
+
+        //--------------------------- Construction of paths and dots for the click count
+
+
         for (var i = 0; i < data.data[j].click_count / 5; i++) {
 
             var rand = Math.random()
@@ -170,6 +154,9 @@ d3.json("../DATA/opportunities.json", function (error, data) {
 
         }
 
+        //--------------------------- Construction of paths and dots for the query count
+
+
         for (var i = 0; i < data.data[j].query_count / 5; i++) {
 
             var rand = Math.random()
@@ -193,21 +180,14 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                     return "#333";
                 });
 
-            // h
-            //     .append("circle")
-            //     .attr("cx", 30 + j * 50 + 30 * rand2)
-            //     .attr("cy", 300 + 300 * rand3)
-            //     .attr("r", 1)
-            //     .attr("opacity", .5)
-            //     .attr("fill", function (d) { return "black"; })
-            //     .attr("stroke", function (d) { return "none"; })
-
         }
 
 
     }
 
 })
+
+//--------------------------- Dashed lines for reference
 
 h
     .append("line")
@@ -219,7 +199,6 @@ h
     .attr("id", "info1")
     .style("opacity", 1)
     .style("stroke-dasharray", ("4"))
-
     .attr("stroke", "black")
 
 h
@@ -232,5 +211,4 @@ h
     .attr("id", "info1")
     .style("opacity", 1)
     .style("stroke-dasharray", ("4"))
-
     .attr("stroke", "black")

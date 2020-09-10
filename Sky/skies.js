@@ -1,3 +1,5 @@
+//--------------------------- SVG definition
+
 var widthres = 980;
 var heightres = 900;
 
@@ -6,8 +8,15 @@ var svgres = d3.select("div.leftpolyresources-div")
     .attr("width", widthres)
     .attr("height", heightres)
 
+//--------------------------- Groups definition
+
+
 fmapres = svgres.append("g")
 reslegend = svgres.append("g")
+h = svgres.append("g")
+h2 = svgres.append("g")
+
+//--------------------------- Constant definition
 
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
@@ -23,8 +32,8 @@ var thejson = "../DATA/opportunities.json"
 field1 = [];
 field2 = [];
 
-h = svgres.append("g")
-h2 = svgres.append("g")
+
+//--------------------------- Construction of the rectangles 
 
 
 d3.json(thejson, function (json) {
@@ -33,6 +42,8 @@ d3.json(thejson, function (json) {
         field1.push(d.query_count / 20);
         field2.push(d.click_count)
     })
+
+    //--------------------------- Calculate the cumulative distance from the first element 
 
     const cumulativeSum = (sum => value => sum += value)(0);
 
@@ -76,11 +87,15 @@ d3.json(thejson, function (json) {
         .attr("id", "theyaxis")
         .style("fill", "#999");
 
+    //--------------------------- Add a number of circles equal to the click count
+
     for (o = 0; o < newfield.length; o++) {
 
         thenum = field2[o]
 
         for (k = 0; k < thenum; k++) {
+
+            //--------------------------- Distribute the circles randomly within the rectangle
 
             randy = Math.random()
             randx = Math.random()

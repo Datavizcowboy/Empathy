@@ -1,3 +1,5 @@
+//--------------------------- SVG definition
+
 var widthres = 980;
 var heightres = 900;
 
@@ -6,17 +8,11 @@ var svgres = d3.select("div.leftpolyresources-div")
     .attr("width", widthres)
     .attr("height", heightres)
 
+//--------------------------- Group definition
+
 fmapres = svgres.append("g")
 reslegend = svgres.append("g")
-
 h = svgres.append("g")
-    .attr("transform", function (d) {
-        return "translate(" + (0) + "," + (0) + ")";
-    })
-
-var lineGenerator = d3.line()
-    .curve(d3.curveCardinal);
-
 gfish = svgres.append("g")
 gfish2 = svgres.append("g")
 gfishlinehyp = svgres.append("g")
@@ -26,9 +22,14 @@ gfishtexthyp2 = svgres.append("g")
 gfishtextsox = svgres.append("g")
 gfishtextsox2 = svgres.append("g")
 
-d3.json("../DATA/opportunities.json", function (error, data) {
+//--------------------------- Constant definition
 
-    console.log(data.data)
+var lineGenerator = d3.line()
+    .curve(d3.curveCardinal);
+
+//--------------------------- Construction of the polygons
+
+d3.json("../DATA/opportunities.json", function (error, data) {
 
     gfish.selectAll('polygon').data(data.data).enter()
         .append('polygon')
@@ -56,6 +57,8 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         })
         .style("opacity", .8);
 
+    //--------------------------- Associate a line with each of the polygon tops
+
     gfishlinehyp.selectAll('line').data(data.data).enter()
         .append('line')
         .attr("x1", function (d, i) { return -0 + (i) * 70 + (d.query_count * .05); })
@@ -79,6 +82,8 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         .attr("stroke", function (d, i) {
             return ("#333");
         });
+
+    //--------------------------- Associate term and value with each of the polygon
 
     gfishtexthyp.selectAll('text').data(data.data).enter()
         .append("text")
