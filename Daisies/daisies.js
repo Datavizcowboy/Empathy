@@ -79,8 +79,7 @@ d3.json(thejson, function (json) {
         dots
             .append('path')
             .attr('d', pathData)
-            .style('stroke-width', function (d) { return 1 })
-            .style('stroke', function (d) { return "none" })
+            .style('stroke-width', function (d) { return .2 })
             .attr("id", function (d, i) { return "flow" + i })
             .style("opacity", function (d) { return .3; })
             .style("fill", function (d) { return d3.rgb(100, 100, 100); })
@@ -91,7 +90,7 @@ d3.json(thejson, function (json) {
     for (var m = 0; m < itemsclick + 1; m++) {
 
         d3.select("#flow" + m)
-            .style("opacity", function (d) { return .3; })
+            .style("opacity", function (d) { return .5; })
             .style("fill", function (d) { return "darkorange"; })
     }
 })
