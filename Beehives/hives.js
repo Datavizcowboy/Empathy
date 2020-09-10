@@ -42,10 +42,10 @@ for (k = 0; k < list_scenarios.length; k++) {
         .attr("r", legend_radius)
         .style("opacity", .8)
         .attr("fill", function (d) {
-            if (k == 0) return "#bbb";
-            return "#000";
+            if (k == 0) return "white";
+            return "darkgoldenrod";
         })
-        .attr("stroke", function (d) { return "none"; })
+        .attr("stroke", function (d) { return "gray"; })
 }
 
 //--------------------------- Construction of beehives from the data
@@ -71,11 +71,13 @@ d3.json("../DATA/opportunities.json", function (error, data) {
         hives
             .append("text")
             .attr("x", function (d, i) { return 30; })
-            .attr("y", function (d) { return 170; })
+            .attr("y", function (d) { return 165; })
             .text(function (d) { return (data.data[ff].terms); })
             .attr("font-family", "Gill Sans, sans-serif")
             .attr("font-size", hives_text_size)
-            .style("fill", "black");
+            .style("fill", "black")
+            .attr("text-anchor","end")
+            .attr("transform", "translate(" + (-145) + "," + (210) + ")rotate(-90)")
 
 
         items = data.data[ff].query_count / 4;
@@ -125,9 +127,10 @@ d3.json("../DATA/opportunities.json", function (error, data) {
                     .append("path")
                     .attr('d', pathData)
                     .style("stroke-width", ".25px")
-                    .attr("opacity", 1)
+                    .style("opacity", 1)
                     .attr("id", "thehive_" + counter + "_" + ff)
-                    .style("fill", d3.rgb(255 - rand2 * 10, 255 - rand2 * 10, 255 - rand2 * 10).toString())
+                    .style("fill", "white")
+                    // .style("fill", d3.rgb(255 - rand2 * 20, 220 - rand2 * 20, 100))
                     .style("stroke", "gray");
 
                 counter = counter + 1
@@ -141,7 +144,7 @@ d3.json("../DATA/opportunities.json", function (error, data) {
 
         for (let rr = 0; rr < high; rr++) {
             pick = Math.floor(Math.random() * items) + 1
-            d3.select("#thehive_" + pick + "_" + ff).style("fill", "#666")
+            d3.select("#thehive_" + pick + "_" + ff).style("fill", "darkgoldenrod")
         }
     }
 })
