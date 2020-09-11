@@ -18,10 +18,10 @@ h = svgres.append("g")
 var lineGenerator = d3.line()
     .curve(d3.curveCardinal);
 var radius = 270
-var list_scenarios = ["5 queries", "5 clicks"]
+var list_scenarios = ["Queries", "Clicks"]
 var legend_size = 10
 var legend_pitch = 700
-var legend_radius = 3
+var legend_radius = [6,2]
 var label_size = 11
 
 //--------------------------- Legend with the circle elements
@@ -31,7 +31,7 @@ for (k = 0; k < list_scenarios.length; k++) {
     legend.append("text")
         .attr("x", legend_pitch+10)
         .attr("y", 10 + k * 15)
-        .text(function (d) { return list_scenarios[k]; })
+        .text(list_scenarios[k])
         .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
         .attr("font-size", legend_size)
         .attr("opacity", 1)
@@ -40,13 +40,13 @@ for (k = 0; k < list_scenarios.length; k++) {
     legend.append("circle")
         .attr("cx", legend_pitch)
         .attr("cy", 6 + k * 15)
-        .attr("r", legend_radius)
+        .attr("r", legend_radius[k])
         .style("opacity", .8)
         .attr("fill", function (d) {
-            if (k == 0) return "#bbb";
+            if (k == 0) return "green";
             else return "#000";
         })
-        .attr("stroke", function (d) { return "none"; })
+        .attr("stroke", "none")
 }
 
 //--------------------------- Construction of the constellation of click counts

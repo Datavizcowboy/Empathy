@@ -28,6 +28,47 @@ var thejson = "../DATA/opportunities.json"
 field1 = [];
 field2 = [];
 
+var list_scenarios = ["40 queries", "40 clicks"]
+var legend_size = 10
+var legend_radius = 3
+var legend_pitch = 450
+var hives_text_size = 12
+
+//--------------------------- Legend with the units
+
+for (k = 0; k < list_scenarios.length; k++) {
+
+    legend.append("text")
+        .attr("x", legend_pitch+10)
+        .attr("y", 30 + k * 15)
+        .text(list_scenarios[k])
+        .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+        .attr("font-size", legend_size)
+        .attr("opacity", 1)
+        .style("fill", "#666")
+
+    legend.append("circle")
+        .attr("cx", legend_pitch)
+        .attr("cy", 26 + k * 15)
+        .attr("r", legend_radius)
+        .style("opacity", .8)
+        .attr("fill", function (d) {
+            if (k == 0) return "gray";
+            return "darkorange";
+        })
+        .attr("stroke", "none")
+}
+
+legend.append("text")
+.attr("x", 460)
+.attr("y", 10)
+.text("Mom Jeans")
+.attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+.attr("font-size", legend_size)
+.attr("opacity", 1)
+.style("fill", "#666")
+
+
 //--------------- Two arrays to store the data and perform calculations
 //--------------- on the number of elements to distribute on the circle
 
@@ -87,7 +128,7 @@ d3.json(thejson, function (json) {
 
     //-------------- Highlight the click counts
 
-    for (var m = 0; m < itemsclick + 1; m++) {
+    for (var m = 0; m < itemsclick; m++) {
 
         d3.select("#flow" + m)
             .style("opacity", function (d) { return .5; })

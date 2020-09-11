@@ -30,7 +30,7 @@ for (k = 0; k < list_scenarios.length; k++) {
     legend.append("text")
         .attr("x", 860)
         .attr("y", 130 + k * 15)
-        .text(function (d) { return list_scenarios[k]; })
+        .text(list_scenarios[k])
         .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
         .attr("font-size", legend_size)
         .attr("opacity", 1)
@@ -45,7 +45,7 @@ for (k = 0; k < list_scenarios.length; k++) {
             if (k == 0) return "white";
             return "darkgoldenrod";
         })
-        .attr("stroke", function (d) { return "gray"; })
+        .attr("stroke", "gray")
 }
 
 //--------------------------- Construction of beehives from the data

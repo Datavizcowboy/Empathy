@@ -10,6 +10,7 @@ var svgres = d3.select("div.leftpolyresources-div")
 
 //--------------------------- Groups definition
 
+legend = svgres.append("g")
 frame = svgres.append("g")
 frametext = svgres.append("g")
 
@@ -22,6 +23,38 @@ var thejson = "../DATA/opportunities.json"
 
 field1 = [];
 field2 = [];
+
+var list_scenarios = ["Clicks"]
+var legend_size = 10
+var legend_pitch = 865
+var legend_radius = [4,2]
+var label_size = 11
+
+//--------------------------- Legend with the circle elements
+
+for (k = 0; k < list_scenarios.length; k++) {
+
+    legend.append("text")
+        .attr("x", legend_pitch+10)
+        .attr("y", 12 + k * 15)
+        .text(list_scenarios[k])
+        .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
+        .attr("font-size", legend_size)
+        .attr("opacity", 1)
+        .style("fill", "#666")
+
+    legend.append("circle")
+        .attr("cx", legend_pitch)
+        .attr("cy", 8 + k * 15)
+        .attr("r", legend_radius[k])
+        .style("opacity", .8)
+        .attr("fill", function (d) {
+            if (k == 0) return "white";
+            else return "#000";
+        })
+        .attr("stroke", "deepskyblue")
+        .attr("stroke-width",6)
+}
 
 //--------------------------- Construction of the rectangles 
 

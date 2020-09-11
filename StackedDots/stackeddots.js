@@ -27,7 +27,7 @@ for (k = 0; k < list_scenarios.length; k++) {
     legend.append("text")
         .attr("x", legend_pitch+10)
         .attr("y", 10 + k * 15)
-        .text(function (d) { return list_scenarios[k]; })
+        .text(list_scenarios[k])
         .attr("font-family", "Gill Sans, Century Gothic, sans-serif")
         .attr("font-size", legend_size)
         .attr("opacity", 1)
