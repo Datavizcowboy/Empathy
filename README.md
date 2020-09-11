@@ -26,7 +26,8 @@ The path is described in a Figma diagram here: [Figma Layout](https://www.figma.
 
 Seven prototypes were developed in this exercise. I have focused on architectures built from simple elements such as circles and polygons, some using volume, some individual units. 
 
-### 01 Stacked Dots
+### 01
+### Stacked Dots
 
 [Stacked Dots](https://graphicprototype.net/empathy/Stackeddots/) follows the intuitive principle of cumulative quantities piling up. Despite its classical representation in a straight vertical direction, I tilted the orientation to be able to pack as many as possible, expecting larger datasets. The total number of queries were displayed in gray in order to add another layer of perception and highlight what matters: the click count. 
 
