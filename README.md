@@ -20,7 +20,7 @@ The design process followed a series of steps:
 - Development
 - Prototypes
 
-The path is described in a diagram: [Figma Layout](https://www.figma.com/file/7M2e54IB8ZEo4mFqgUJdXz/Opportunities?node-id=0%3A1 "DESIGN PROCESS"). From left to right, all the details about the different steps are described, from the abstract concept to precise prototypes and their evolution. 
+The path is described in a [Figma Layout](https://www.figma.com/file/7M2e54IB8ZEo4mFqgUJdXz/Opportunities?node-id=0%3A1 "DESIGN PROCESS"). From left to right, all the details about the different steps are described, from the abstract concept to precise prototypes and their evolution. 
 
 ## Prototypes
 
