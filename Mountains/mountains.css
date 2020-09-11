@@ -26,22 +26,22 @@ line-height:0px;
 p {  margin-top: 0.3em; margin-bottom: 0em; }
 
 a:link {
-color: darkgoldenrod;
+color: #999;
 text-decoration: none;
 }
 
 a:visited {
-color: goldenrod;
+color: #999;
 text-decoration: none;
 }
 
 a:hover {
-color: darkred;
+color: #333;
 text-decoration: none;
 }
 
 a:active {
-color: goldenrod;
+color: #999;
 text-decoration: none;
 }
 
